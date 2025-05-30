@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task View</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Task Gallery</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="main.html">To-Do List</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Task View</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Filter Tasks</h2>
+    <label for="filterCategory">Category:</label>
+    <select id="filterCategory">
+      <option value="All">All</option>
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="School">School</option>
+    </select>
+
+    <label for="filterStatus">Status:</label>
+    <select id="filterStatus">
+      <option value="All">All</option>
+      <option value="Done">Done</option>
+      <option value="NotDone">Not Done</option>
+    </select>
+
+    <ul id="filteredTaskList"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
