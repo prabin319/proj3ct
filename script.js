@@ -56,3 +56,49 @@ function toggleDone(index) {
   tasks[index].done = !tasks[index].done;
   renderTasks();
 }
+
+// Gallery Page
+
+// If this is the gallery page, show filtered tasks
+document.addEventListener("DOMContentLoaded", () => {
+  const taskListEl = document.getElementById("filteredTaskList");
+  const filterCategory = document.getElementById("filterCategory");
+  const filterStatus = document.getElementById("filterStatus");
+
+  if (taskListEl) {
+    // Restore from localStorage if you add it later
+    renderFilteredTasks();
+
+    filterCategory.addEventListener("change", renderFilteredTasks);
+    filterStatus.addEventListener("change", renderFilteredTasks);
+  }
+
+  function renderFilteredTasks() {
+    taskListEl.innerHTML = "";
+
+    let filtered = tasks;
+
+    if (filterCategory.value !== "All") {
+      filtered = filtered.filter(task => task.category === filterCategory.value);
+    }
+
+    if (filterStatus.value === "Done") {
+      filtered = filtered.filter(task => task.done);
+    } else if (filterStatus.value === "NotDone") {
+      filtered = filtered.filter(task => !task.done);
+    }
+
+    if (filtered.length === 0) {
+      taskListEl.innerHTML = "<li>No tasks match the filter.</li>";
+    } else {
+      filtered.forEach(task => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>${task.text}</strong> (${task.category}) - Due: ${task.date}
+          ${task.done ? "✅" : ""}
+        `;
+        taskListEl.appendChild(li);
+      });
+    }
+  }
+});
