@@ -1,44 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Task View</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Gallery - Filter and View</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Task Gallery</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="main.html">To-Do List</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html">Task View</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>Task Gallery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="main.html">To-Do List</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Task View</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <h2>Filter Tasks</h2>
-    <label for="filterCategory">Category:</label>
-    <select id="filterCategory">
-      <option value="All">All</option>
-      <option value="Work">Work</option>
-      <option value="Personal">Personal</option>
-      <option value="School">School</option>
-    </select>
+    <main>
+        <section class="filter-section">
+            <h2>Filter Your Tasks</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="filterCategory">Filter by Category:</label>
+                    <select id="filterCategory">
+                        <option value="All">All Categories</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="School">School</option>
+                    </select>
+                </div>
 
-    <label for="filterStatus">Status:</label>
-    <select id="filterStatus">
-      <option value="All">All</option>
-      <option value="Done">Done</option>
-      <option value="NotDone">Not Done</option>
-    </select>
+                <div class="filter-group">
+                    <label for="filterStatus">Filter by Status:</label>
+                    <select id="filterStatus">
+                        <option value="All">All Tasks</option>
+                        <option value="Done">Completed Tasks</option>
+                        <option value="NotDone">Pending Tasks</option>
+                    </select>
+                </div>
 
-    <ul id="filteredTaskList"></ul>
-  </main>
+                <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
+            </div>
+        </section>
 
-  <script src="script.js"></script>
+        <section class="gallery-section">
+            <div class="task-summary">
+                <h3>Task Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalCount">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="workCount">0</span>
+                        <span class="stat-label">Work</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="personalCount">0</span>
+                        <span class="stat-label">Personal</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="schoolCount">0</span>
+                        <span class="stat-label">School</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filtered-results">
+                <h3 id="resultsTitle">All Tasks</h3>
+                <div id="filteredTaskList" class="gallery-grid">
+                    <!-- Filtered tasks will appear here -->
+                </div>
+                <div id="noResultsMessage" class="no-results" style="display: none;">
+                    <p>No tasks match your current filters.</p>
+                    <p><a href="main.html">Add some tasks</a> to get started!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My To-Do List App</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
