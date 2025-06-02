@@ -1,48 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>About</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About This App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>About This App</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="main.html">To-Do List</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html">Task View</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>About This To-Do List App</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="main.html">To-Do List</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Task View</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <section>
-      <h2>Why I Built This</h2>
-      <p>I created this To-Do List app as part of my final web development project. I wanted to build something practical that I could actually use to organize my daily tasks.</p>
-    </section>
+    <main>
+        <section class="about-section">
+            <h2>Why I Built This App</h2>
+            <p>I created this To-Do List app as part of my final web development project for school. As a student, I needed a simple way to keep track of my assignments, work tasks, and personal reminders all in one place.</p>
+            <p>This project helped me practice and demonstrate my skills in HTML, CSS, and JavaScript without using any frameworks - just pure web development basics!</p>
+        </section>
 
-    <section>
-      <h2>How It Works</h2>
-      <p>You can add tasks, mark them as complete, delete them, and even filter them by category or status. All done using pure HTML, CSS, and JavaScript—no frameworks!</p>
-    </section>
+        <section class="how-it-works-section">
+            <h2>How It Works</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>➕ Add Tasks</h3>
+                    <p>Create new tasks with descriptions, due dates, and categories</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✅ Mark Complete</h3>
+                    <p>Check off tasks when you finish them</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🗑️ Delete Tasks</h3>
+                    <p>Remove tasks you no longer need</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔍 Filter & View</h3>
+                    <p>Sort tasks by category or completion status</p>
+                </div>
+            </div>
+        </section>
 
-    <section>
-      <h2>What I Used</h2>
-      <ul>
-        <li>HTML5 for structure</li>
-        <li>CSS3 for styling and responsiveness</li>
-        <li>JavaScript for interactivity and task logic</li>
-        <li>Git & GitHub for version control and deployment</li>
-      </ul>
-    </section>
-  </main>
+        <section class="tech-stack-section">
+            <h2>Technologies Used</h2>
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Purpose</th>
+                        <th>What I Learned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HTML5</td>
+                        <td>Page structure and content</td>
+                        <td>Semantic elements, forms, accessibility</td>
+                    </tr>
+                    <tr>
+                        <td>CSS3</td>
+                        <td>Styling and responsive design</td>
+                        <td>Flexbox, animations, mobile-first design</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Interactive functionality</td>
+                        <td>DOM manipulation, event handling, local storage</td>
+                    </tr>
+                    <tr>
+                        <td>Git & GitHub</td>
+                        <td>Version control and hosting</td>
+                        <td>Commits, branches, GitHub Pages deployment</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 My To-Do List App</p>
-  </footer>
+        <section class="personal-note-section">
+            <h2>Personal Note</h2>
+            <p>This was my first major web development project, and I'm proud of what I've accomplished! While it's simple, it includes all the core concepts I've learned: responsive design, form validation, dynamic content, and user interaction.</p>
+            <p>I hope you find this app useful for organizing your own tasks. Feel free to <a href="contact.html">contact me</a> with any feedback!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My To-Do List App - Student Project</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
