@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List App - Home</title>
+    <title>My To-Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to My To-Do List App</h1>
+        <h1>My To-Do List</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,25 +21,49 @@
     </header>
 
     <main>
-        <section class="welcome-section">
-            <h2>Stay Organized with Your Tasks!</h2>
-            <p>Welcome to my simple to-do list application. Here you can:</p>
-            <ul class="feature-list">
-                <li>Add new tasks with due dates</li>
-                <li>Organize tasks by category (Work, Personal, School)</li>
-                <li>Mark tasks as complete</li>
-                <li>Delete tasks you no longer need</li>
-                <li>Filter tasks by category and status</li>
+        <section class="add-task-section">
+            <h2>Add a New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskInput">Task Description:</label>
+                    <input type="text" id="taskInput" placeholder="Enter your task here..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="">Choose a category</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="School">School</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
+        </section>
+
+        <section class="task-list-section">
+            <h2>Your Tasks</h2>
+            <div id="taskCounter">
+                <p>Total Tasks: <span id="totalTasks">0</span> | Completed: <span id="completedTasks">0</span></p>
+            </div>
+            <ul id="taskList" class="task-list">
+                <!-- Tasks will be added here by JavaScript -->
             </ul>
-            <div class="cta-buttons">
-                <a href="main.html" class="btn btn-primary">Start Managing Tasks</a>
-                <a href="about.html" class="btn btn-secondary">Learn More</a>
+            <div id="noTasksMessage" class="no-tasks" style="display: none;">
+                <p>No tasks yet! Add your first task above.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 My To-Do List App - Built for Web Development Class</p>
+        <p>&copy; 2025 My To-Do List App</p>
     </footer>
 
     <script src="script.js"></script>
