@@ -1,21 +1,20 @@
-// Global variables
 let tasks = [];
 
-// Wait for the page to load completely
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Load tasks from localStorage when page loads
+
     loadTasksFromStorage();
     
-    // Set up different page functionality based on current page
+ 
     setupPageFunctionality();
 });
 
-// Save tasks to localStorage
+
 function saveTasksToStorage() {
     localStorage.setItem('todoTasks', JSON.stringify(tasks));
 }
 
-// Load tasks from localStorage
+
 function loadTasksFromStorage() {
     const savedTasks = localStorage.getItem('todoTasks');
     if (savedTasks) {
@@ -23,7 +22,6 @@ function loadTasksFromStorage() {
     }
 }
 
-// Determine which page we're on and set up appropriate functionality
 function setupPageFunctionality() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
@@ -38,11 +36,9 @@ function setupPageFunctionality() {
             setupContactPage();
             break;
         default:
-            // For index.html and about.html, no special setup needed
             break;
     }
 }
-// ==================== MAIN PAGE FUNCTIONALITY ====================
 function setupMainPage() {
     const taskForm = document.getElementById('taskForm');
     const taskInput = document.getElementById('taskInput');
@@ -50,23 +46,23 @@ function setupMainPage() {
     const category = document.getElementById('category');
     
     if (taskForm) {
-        // Set minimum date to today
+
         const today = new Date().toISOString().split('T')[0];
         dueDate.min = today;
         
-        // Handle form submission
+
         taskForm.addEventListener('submit', function(e) {
             e.preventDefault();
             addNewTask();
         });
         
-        // Render existing tasks
+
         renderTasks();
         updateTaskCounter();
     }
 }
 
-// Add a new task
+
 function addNewTask() {
     const taskInput = document.getElementById('taskInput');
     const dueDate = document.getElementById('dueDate');
@@ -76,7 +72,7 @@ function addNewTask() {
     const date = dueDate.value;
     const cat = category.value;
     
-    // Validation
+
     if (taskText === '') {
         alert('Please enter a task description.');
         taskInput.focus();
@@ -94,10 +90,9 @@ function addNewTask() {
         category.focus();
         return;
     }
-    
-    // Create new task object
+
     const task = {
-        id: Date.now(), // Simple ID based on timestamp
+        id: Date.now(), 
         text: taskText,
         date: date,
         category: cat,
@@ -105,31 +100,31 @@ function addNewTask() {
         createdAt: new Date().toISOString()
     };
     
-    // Add to tasks array
+   
     tasks.push(task);
     
-    // Save to localStorage
+   
     saveTasksToStorage();
     
-    // Update display
+    
     renderTasks();
     updateTaskCounter();
     
-    // Reset form
+    
     document.getElementById('taskForm').reset();
     
-    // Show success message
+    
     showNotification('Task added successfully!', 'success');
 }
 
-// Render all tasks on the main page
+
 function renderTasks() {
     const taskList = document.getElementById('taskList');
     const noTasksMessage = document.getElementById('noTasksMessage');
     
-    if (!taskList) return; // Not on main page
+    if (!taskList) return; 
     
-    // Clear existing tasks
+    
     taskList.innerHTML = '';
     
     if (tasks.length === 0) {
@@ -139,15 +134,15 @@ function renderTasks() {
         noTasksMessage.style.display = 'none';
     }
     
-    // Sort tasks: incomplete first, then by due date
+    
     const sortedTasks = [...tasks].sort((a, b) => {
         if (a.done !== b.done) {
-            return a.done ? 1 : -1; // Incomplete tasks first
+            return a.done ? 1 : -1; 
         }
-        return new Date(a.date) - new Date(b.date); // Then by due date
+        return new Date(a.date) - new Date(b.date); 
     });
     
-    // Create task elements
+    
     sortedTasks.forEach((task, index) => {
         const li = document.createElement('li');
         li.className = `task-item ${task.done ? 'completed' : ''}`;
@@ -179,7 +174,7 @@ function renderTasks() {
     });
 }
 
-// Toggle task completion status
+
 function toggleTaskDone(taskId) {
     const taskIndex = tasks.findIndex(task => task.id === taskId);
     if (taskIndex !== -1) {
@@ -193,7 +188,7 @@ function toggleTaskDone(taskId) {
     }
 }
 
-// Delete a task
+
 function deleteTask(taskId) {
     if (confirm('Are you sure you want to delete this task?')) {
         const taskIndex = tasks.findIndex(task => task.id === taskId);
@@ -207,7 +202,7 @@ function deleteTask(taskId) {
     }
 }
 
-// Update task counter
+
 function updateTaskCounter() {
     const totalTasks = document.getElementById('totalTasks');
     const completedTasks = document.getElementById('completedTasks');
@@ -221,18 +216,18 @@ function updateTaskCounter() {
     }
 }
 
-// ==================== GALLERY PAGE FUNCTIONALITY ====================
+
 function setupGalleryPage() {
     const filterCategory = document.getElementById('filterCategory');
     const filterStatus = document.getElementById('filterStatus');
     const clearFiltersBtn = document.getElementById('clearFilters');
     
     if (filterCategory && filterStatus) {
-        // Render filtered tasks on page load
+       
         renderFilteredTasks();
         updateTaskSummary();
         
-        // Add event listeners for filters
+        
         filterCategory.addEventListener('change', function() {
             renderFilteredTasks();
             updateResultsTitle();
@@ -243,7 +238,7 @@ function setupGalleryPage() {
             updateResultsTitle();
         });
         
-        // Clear filters button
+       
         if (clearFiltersBtn) {
             clearFiltersBtn.addEventListener('click', function() {
                 filterCategory.value = 'All';
@@ -255,19 +250,19 @@ function setupGalleryPage() {
     }
 }
 
-// Render filtered tasks in gallery view
+
 function renderFilteredTasks() {
     const taskListEl = document.getElementById('filteredTaskList');
     const noResultsMessage = document.getElementById('noResultsMessage');
     const filterCategory = document.getElementById('filterCategory');
     const filterStatus = document.getElementById('filterStatus');
     
-    if (!taskListEl) return; // Not on gallery page
+    if (!taskListEl) return; 
     
-    // Clear existing tasks
+   
     taskListEl.innerHTML = '';
     
-    // Apply filters
+    
     let filtered = [...tasks];
     
     if (filterCategory.value !== 'All') {
@@ -280,7 +275,7 @@ function renderFilteredTasks() {
         filtered = filtered.filter(task => !task.done);
     }
     
-    // Show/hide no results message
+    
     if (filtered.length === 0) {
         noResultsMessage.style.display = 'block';
         return;
@@ -288,7 +283,7 @@ function renderFilteredTasks() {
         noResultsMessage.style.display = 'none';
     }
     
-    // Sort filtered tasks
+    
     filtered.sort((a, b) => {
         if (a.done !== b.done) {
             return a.done ? 1 : -1;
@@ -296,7 +291,7 @@ function renderFilteredTasks() {
         return new Date(a.date) - new Date(b.date);
     });
     
-    // Create task cards
+    
     filtered.forEach(task => {
         const taskCard = document.createElement('div');
         taskCard.className = `task-item ${task.done ? 'completed' : ''}`;
