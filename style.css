@@ -1,4 +1,4 @@
-/* style.css */
+
 * {
   margin: 0;
   padding: 0;
@@ -161,7 +161,7 @@ footer {
   }
 }
 
-/* Main Content */
+
 main {
     max-width: 800px;
     margin: 2rem auto;
@@ -192,7 +192,7 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
-/* Button Styles */
+
 .btn {
     background: #667eea;
     color: white;
@@ -225,7 +225,6 @@ h3 {
     background: #4a5568;
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -256,7 +255,7 @@ input:required:invalid {
     border-color: #e53e3e;
 }
 
-/* Task List Styles */
+
 .task-list {
     list-style: none;
     padding: 0;
@@ -312,7 +311,7 @@ input:required:invalid {
     font-size: 0.8rem;
 }
 
-/* Category Badge */
+
 .category-badge {
     display: inline-block;
     background: #667eea;
@@ -327,7 +326,7 @@ input:required:invalid {
 .category-personal { background: #38a169; }
 .category-school { background: #d69e2e; }
 
-/* Counter Styles */
+
 #taskCounter {
     background: #edf2f7;
     padding: 1rem;
@@ -336,7 +335,7 @@ input:required:invalid {
     text-align: center;
 }
 
-/* Welcome Page Styles */
+
 .welcome-section {
     text-align: center;
 }
@@ -358,7 +357,7 @@ input:required:invalid {
     margin-top: 2rem;
 }
 
-/* About Page Styles */
+
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -398,7 +397,7 @@ input:required:invalid {
     color: #4a5568;
 }
 
-/* Gallery Page Styles */
+
 .filter-controls {
     display: flex;
     gap: 1rem;
@@ -448,7 +447,7 @@ input:required:invalid {
     margin-top: 1rem;
 }
 
-/* Contact Page Styles */
+
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -505,7 +504,7 @@ input:required:invalid {
     text-align: center;
 }
 
-/* No tasks/results messages */
+
 .no-tasks, .no-results {
     text-align: center;
     padding: 2rem;
@@ -513,7 +512,6 @@ input:required:invalid {
     font-style: italic;
 }
 
-/* Footer */
 footer {
     background: #2d3748;
     color: white;
@@ -522,7 +520,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Animations */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -532,7 +530,7 @@ footer {
     animation: fadeIn 0.3s ease;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.5rem;
