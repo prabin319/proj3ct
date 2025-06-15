@@ -350,3 +350,100 @@ function updateResultsTitle() {
         resultsTitle.textContent = title;
     }
 }
+function setupContactPage() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleContactForm();
+        });
+        
+        const formInputs = contactForm.querySelectorAll('input, select, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateField(input);
+            });
+        });
+    }
+}
+
+function handleContactForm() {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    
+
+    let isValid = true;
+    const requiredFields = ['name', 'email', 'subject', 'message'];
+    
+    requiredFields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
+    
+    if (isValid) {
+        
+        showFormFeedback('Thank you for your message! I\'ll get back to you soon.', 'success');
+        form.reset();
+        clearAllErrors();
+    } else {
+        showFormFeedback('Please fix the errors above and try again.', 'error');
+    }
+}
+
+
+function validateField(field) {
+    const fieldName = field.name;
+    const value = field.value.trim();
+    const errorElement = document.getElementById(fieldName + 'Error');
+    
+    let isValid = true;
+    let errorMessage = '';
+    
+
+    if (field.hasAttribute('required') && value === '') {
+        isValid = false;
+        errorMessage = 'This field is required.';
+    }
+    
+
+    switch (fieldName) {
+        case 'name':
+            if (value.length > 0 && value.length < 2) {
+                isValid = false;
+                errorMessage = 'Name must be at least 2 characters long.';
+            }
+            break;
+        case 'email':
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (value.length > 0 && !emailPattern.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address.';
+            }
+            break;
+        case 'message':
+            if (value.length > 0 && value.length < 10) {
+                isValid = false;
+                errorMessage = 'Message must be at least 10 characters long.';
+            }
+            break;
+    }
+    
+ 
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.style.display = isValid ? 'none' : 'block';
+    }
+    
+
+    if (isValid) {
+        field.classList.remove('error');
+    } else {
+        field.classList.add('error');
+    }
+    
+    return isValid;
+}
+
