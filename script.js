@@ -215,3 +215,36 @@ function updateTaskCounter() {
         completedTasks.textContent = completed;
     }
 }
+
+function setupGalleryPage() {
+    const filterCategory = document.getElementById('filterCategory');
+    const filterStatus = document.getElementById('filterStatus');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    
+    if (filterCategory && filterStatus) {
+       
+        renderFilteredTasks();
+        updateTaskSummary();
+        
+        
+        filterCategory.addEventListener('change', function() {
+            renderFilteredTasks();
+            updateResultsTitle();
+        });
+        
+        filterStatus.addEventListener('change', function() {
+            renderFilteredTasks();
+            updateResultsTitle();
+        });
+        
+       
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', function() {
+                filterCategory.value = 'All';
+                filterStatus.value = 'All';
+                renderFilteredTasks();
+                updateResultsTitle();
+            });
+        }
+    }
+}
