@@ -248,3 +248,105 @@ function setupGalleryPage() {
         }
     }
 }
+function renderFilteredTasks() {
+    const taskListEl = document.getElementById('filteredTaskList');
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    const filterCategory = document.getElementById('filterCategory');
+    const filterStatus = document.getElementById('filterStatus');
+    
+    if (!taskListEl) return; 
+    
+   
+    taskListEl.innerHTML = '';
+    
+    
+    let filtered = [...tasks];
+    
+    if (filterCategory.value !== 'All') {
+        filtered = filtered.filter(task => task.category === filterCategory.value);
+    }
+    
+    if (filterStatus.value === 'Done') {
+        filtered = filtered.filter(task => task.done);
+    } else if (filterStatus.value === 'NotDone') {
+        filtered = filtered.filter(task => !task.done);
+    }
+    
+    
+    if (filtered.length === 0) {
+        noResultsMessage.style.display = 'block';
+        return;
+    } else {
+        noResultsMessage.style.display = 'none';
+    }
+    
+    
+    filtered.sort((a, b) => {
+        if (a.done !== b.done) {
+            return a.done ? 1 : -1;
+        }
+        return new Date(a.date) - new Date(b.date);
+    });
+    
+    
+    filtered.forEach(task => {
+        const taskCard = document.createElement('div');
+        taskCard.className = `task-item ${task.done ? 'completed' : ''}`;
+        
+        const formattedDate = formatDate(task.date);
+        const isOverdue = !task.done && new Date(task.date) < new Date();
+        const categoryClass = `category-${task.category.toLowerCase()}`;
+        
+        taskCard.innerHTML = `
+            <div class="task-content">
+                <div class="task-info">
+                    <h4>${task.text}</h4>
+                    <div class="task-details">
+                        <span class="category-badge ${categoryClass}">${task.category}</span>
+                        <span class="due-date">${formattedDate}</span>
+                        ${task.done ? '<span class="status-badge completed">✅ Completed</span>' : ''}
+                        ${isOverdue ? '<span class="status-badge overdue">⚠️ Overdue</span>' : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        taskListEl.appendChild(taskCard);
+    });
+}
+function updateTaskSummary() {
+    const totalCount = document.getElementById('totalCount');
+    const workCount = document.getElementById('workCount');
+    const personalCount = document.getElementById('personalCount');
+    const schoolCount = document.getElementById('schoolCount');
+    
+    if (totalCount) {
+        totalCount.textContent = tasks.length;
+        workCount.textContent = tasks.filter(task => task.category === 'Work').length;
+        personalCount.textContent = tasks.filter(task => task.category === 'Personal').length;
+        schoolCount.textContent = tasks.filter(task => task.category === 'School').length;
+    }
+}
+
+
+function updateResultsTitle() {
+    const resultsTitle = document.getElementById('resultsTitle');
+    const filterCategory = document.getElementById('filterCategory');
+    const filterStatus = document.getElementById('filterStatus');
+    
+    if (resultsTitle) {
+        let title = '';
+        
+        if (filterCategory.value !== 'All' && filterStatus.value !== 'All') {
+            title = `${filterStatus.value === 'Done' ? 'Completed' : 'Pending'} ${filterCategory.value} Tasks`;
+        } else if (filterCategory.value !== 'All') {
+            title = `${filterCategory.value} Tasks`;
+        } else if (filterStatus.value !== 'All') {
+            title = `${filterStatus.value === 'Done' ? 'Completed' : 'Pending'} Tasks`;
+        } else {
+            title = 'All Tasks';
+        }
+        
+        resultsTitle.textContent = title;
+    }
+}
