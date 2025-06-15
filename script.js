@@ -446,4 +446,56 @@ function validateField(field) {
     
     return isValid;
 }
+function showFormFeedback(message, type) {
+    const feedbackElement = document.getElementById('formFeedback');
+    
+    if (feedbackElement) {
+        feedbackElement.textContent = message;
+        feedbackElement.className = `feedback-message ${type}`;
+        feedbackElement.style.display = 'block';
+        
+     
+        if (type === 'success') {
+            setTimeout(() => {
+                feedbackElement.style.display = 'none';
+            }, 5000);
+        }
+    }
+}
 
+
+function clearAllErrors() {
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(element => {
+        element.style.display = 'none';
+    });
+    
+    const inputElements = document.querySelectorAll('input.error, select.error, textarea.error');
+    inputElements.forEach(element => {
+        element.classList.remove('error');
+    });
+}
+
+
+
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+
+    if (date.toDateString() === today.toDateString()) {
+        return 'Today';
+    } else if (date.toDateString() === tomorrow.toDateString()) {
+        return 'Tomorrow';
+    } else {
+
+        return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: date.getFullYear() !== today.getFullYear() ? 'numeric' : undefined
+        });
+    }
+}
