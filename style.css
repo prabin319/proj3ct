@@ -39,7 +39,7 @@ header {
 
 h1 {
   color: #2d3436;
-  font-size: 2 rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -64,10 +64,6 @@ nav a.active {
   border-bottom-color: #0984e3;
 }
 
-main {
-  text-align: center;
-  padding: 4rem 2rem;
-}
 
 .hero {
   max-width: 600px;
@@ -170,14 +166,16 @@ footer {
 
 
 main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    overflow: hidden;
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
+
 
 section {
     padding: 2rem;
