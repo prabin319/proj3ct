@@ -499,3 +499,68 @@ function formatDate(dateString) {
         });
     }
 }
+
+function showNotification(message, type = 'info') {
+
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#48bb78' : '#667eea'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 1000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+    `;
+    notification.textContent = message;
+    
+
+    document.body.appendChild(notification);
+    
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+
+const additionalStyles = `
+    .overdue { color: #e53e3e; font-weight: bold; }
+    .overdue-label { 
+        background: #e53e3e; 
+        color: white; 
+        padding: 0.2rem 0.5rem; 
+        border-radius: 10px; 
+        font-size: 0.7rem; 
+        margin-left: 0.5rem; 
+    }
+    .status-badge { 
+        padding: 0.2rem 0.6rem; 
+        border-radius: 10px; 
+        font-size: 0.8rem; 
+        margin-left: 0.5rem; 
+    }
+    .status-badge.completed { background: #48bb78; color: white; }
+    .status-badge.overdue { background: #e53e3e; color: white; }
+    input.error, select.error, textarea.error { border-color: #e53e3e; }
+`;
+
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
