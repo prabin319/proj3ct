@@ -188,3 +188,30 @@ function toggleTaskDone(taskId) {
     }
 }
 
+
+function deleteTask(taskId) {
+    if (confirm('Are you sure you want to delete this task?')) {
+        const taskIndex = tasks.findIndex(task => task.id === taskId);
+        if (taskIndex !== -1) {
+            tasks.splice(taskIndex, 1);
+            saveTasksToStorage();
+            renderTasks();
+            updateTaskCounter();
+            showNotification('Task deleted!', 'success');
+        }
+    }
+}
+
+
+function updateTaskCounter() {
+    const totalTasks = document.getElementById('totalTasks');
+    const completedTasks = document.getElementById('completedTasks');
+    
+    if (totalTasks && completedTasks) {
+        const total = tasks.length;
+        const completed = tasks.filter(task => task.done).length;
+        
+        totalTasks.textContent = total;
+        completedTasks.textContent = completed;
+    }
+}
